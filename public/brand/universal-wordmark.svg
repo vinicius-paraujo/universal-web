@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="180" viewBox="0 0 600 180" role="img" aria-labelledby="title desc">
+  <title id="title">Wordmark Universal</title>
+  <desc id="desc">Nome Universal em tipografia serifada acadêmica e degradê lavanda.</desc>
+  <defs>
+    <linearGradient id="word" x1="20" y1="35" x2="570" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0E9FF"/>
+      <stop offset="1" stop-color="#C4B5FD"/>
+    </linearGradient>
+  </defs>
+  <text x="18" y="133" fill="url(#word)" font-family="Georgia, 'Times New Roman', serif" font-size="126" font-weight="700" letter-spacing="-3">Universal</text>
+</svg>

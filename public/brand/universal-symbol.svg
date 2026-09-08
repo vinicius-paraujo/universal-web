@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Símbolo do Universal</title>
+  <desc id="desc">Globo vetorial em tons de roxo com letra U em espaço negativo e órbita descontínua.</desc>
+  <defs>
+    <linearGradient id="violet" x1="50" y1="55" x2="280" y2="265" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="0.48" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#4C1D95"/>
+    </linearGradient>
+    <mask id="u-cut">
+      <rect width="320" height="320" fill="white"/>
+      <path d="M116 101v80c0 59 88 59 88 0v-80" fill="none" stroke="black" stroke-width="31" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <g mask="url(#u-cut)">
+    <circle cx="160" cy="160" r="105" fill="url(#violet)" opacity=".13"/>
+    <g fill="none" stroke="url(#violet)" stroke-linecap="round">
+      <circle cx="160" cy="160" r="105" stroke-width="14"/>
+      <ellipse cx="160" cy="160" rx="48" ry="105" stroke-width="8" opacity=".72"/>
+      <path d="M62 126c60 27 136 27 196 0M62 194c60-27 136-27 196 0" stroke-width="7" opacity=".58"/>
+    </g>
+  </g>
+  <g transform="rotate(-17 160 160)" fill="none" stroke="url(#violet)" stroke-width="9" stroke-linecap="round">
+    <path d="M34 145c19-33 62-45 104-49"/>
+    <path d="M188 96c47 5 88 22 99 50"/>
+    <path d="M286 176c-18 34-60 46-103 49"/>
+    <path d="M132 224c-46-5-87-21-99-49"/>
+  </g>
+  <circle cx="39" cy="178" r="8" fill="#A78BFA"/>
+  <circle cx="281" cy="142" r="8" fill="#6D28D9"/>
+</svg>

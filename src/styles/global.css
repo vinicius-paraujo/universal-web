@@ -1,0 +1,44 @@
+:root {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #f0e9ff;
+	background: #080512;
+	font-synthesis: none;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	min-width: 20rem;
+	background: #080512;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	background:
+		radial-gradient(circle at 20% 18%, rgb(76 29 149 / 32%), transparent 34rem),
+		linear-gradient(145deg, #160b2b 0%, #080512 72%);
+}
+
+main {
+	display: grid;
+	min-height: 100vh;
+	place-content: center;
+	justify-items: center;
+	padding: 2rem;
+}
+
+.brand {
+	display: block;
+	width: min(48rem, 90vw);
+	height: auto;
+}
+
+p {
+	margin: -1.5rem 0 0;
+	color: #b8add0;
+	font-size: clamp(1rem, 2vw, 1.2rem);
+	letter-spacing: 0.04em;
+}
