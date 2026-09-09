@@ -11,6 +11,12 @@
   <strong><a href="https://universal.markineo.com.br/">Acessar o portal</a></strong>
 </p>
 
+<p align="center">
+  <img src="./public/readme/portal-inicio.png" width="31%" alt="Página inicial e apresentação da pesquisa">
+  <img src="./public/readme/portal-parceiros.png" width="31%" alt="Seção de parceiros">
+  <img src="./public/readme/portal-resultados.png" width="31%" alt="Seção de resultados">
+</p>
+
 ## Conteúdo
 
 O portal apresenta:
