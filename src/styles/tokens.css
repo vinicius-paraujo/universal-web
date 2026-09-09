@@ -1,0 +1,37 @@
+:root {
+	color-scheme: dark;
+	--color-page: #15161d;
+	--color-header: #111218;
+	--color-surface: #20212b;
+	--color-hero-start: #2b2739;
+	--color-hero-end: #191c27;
+	--color-text: #eeeef2;
+	--color-muted: #bec0cd;
+	--color-accent: #c4b5fd;
+	--color-border: #41424e;
+	--color-focus: #e1d6ff;
+	--font-body: 'Segoe UI', system-ui, sans-serif;
+	--text-small: 0.875rem;
+	--text-body: 1rem;
+	--text-lead: clamp(1.125rem, 1.6vw, 1.25rem);
+	--text-title: clamp(2.375rem, 4.8vw, 4.25rem);
+	--text-heading: clamp(1.625rem, 2.5vw, 2.25rem);
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.5rem;
+	--space-6: 2rem;
+	--space-7: 3rem;
+	--space-8: 4rem;
+	--space-9: 6rem;
+	--radius-small: 0.25rem;
+	--radius-medium: 0.5rem;
+	--shadow-menu: 0 1rem 2rem rgb(0 0 0 / 20%);
+	--width-content: 75rem;
+	--width-reading: 40rem;
+	--gutter: clamp(1.25rem, 5vw, 4rem);
+	--transition-fast: 150ms ease;
+	/* Breakpoints: 40rem (header), 64rem (two-column content).
+	   Custom properties cannot be referenced by native media queries. */
+}

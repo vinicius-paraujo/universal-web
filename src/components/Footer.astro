@@ -1,0 +1,131 @@
+---
+import type { NavigationItem } from './Navigation.astro';
+
+interface Props {
+	navigation: NavigationItem[];
+}
+
+const { navigation } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer>
+	<div class="container footer-main">
+		<div class="footer-introduction">
+			<a class="footer-brand" href="/" aria-label="Universal — início">
+				<img src="/brand/universal-symbol.svg" alt="" width="320" height="320" />
+				<span>Universal</span>
+			</a>
+			<p>Pesquisa interdisciplinar em realidade virtual, computação gráfica e experiências de aprendizagem.</p>
+		</div>
+
+		<nav aria-label="Navegação do rodapé">
+			<h2>Portal</h2>
+			<ul>
+				{navigation.map(({ label, href }) => <li><a href={href}>{label}</a></li>)}
+			</ul>
+		</nav>
+
+		<div class="institutional">
+			<h2>Vínculo acadêmico</h2>
+			<ul>
+				<li><a href="https://www.ufc.br/">Universidade Federal do Ceará</a></li>
+				<li><a href="https://virtual.ufc.br/">Instituto UFC Virtual</a></li>
+				<li><a href="https://smd.ufc.br/pt/">Sistemas e Mídias Digitais</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="container footer-bottom">
+		<p>© {year} Universal</p>
+		<p>Fortaleza, Ceará</p>
+	</div>
+</footer>
+
+<style>
+	footer {
+		background: var(--color-header);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.footer-main {
+		display: grid;
+		gap: var(--space-7);
+		padding-block: var(--space-8);
+	}
+
+	.footer-introduction {
+		display: grid;
+		align-content: start;
+		gap: var(--space-5);
+		max-width: 32rem;
+	}
+
+	.footer-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-3);
+		width: fit-content;
+		color: var(--color-text);
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.65rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.footer-brand img {
+		width: 3rem;
+	}
+
+	h2 {
+		margin: 0 0 var(--space-4);
+		font-family: var(--font-body);
+		font-size: var(--text-small);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	ul {
+		display: grid;
+		gap: var(--space-2);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	a:not(.footer-brand) {
+		display: inline-flex;
+		align-items: center;
+		min-height: 40px;
+		color: var(--color-muted);
+		text-decoration-color: transparent;
+		transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+	}
+
+	a:not(.footer-brand):hover,
+	a:not(.footer-brand):focus-visible {
+		color: var(--color-text);
+		text-decoration-color: var(--color-accent);
+	}
+
+	.footer-bottom {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: var(--space-3) var(--space-6);
+		padding-block: var(--space-5);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.footer-bottom p {
+		font-size: var(--text-small);
+	}
+
+	@media (min-width: 64rem) {
+		.footer-main {
+			grid-template-columns: minmax(18rem, 1.5fr) minmax(9rem, 0.6fr) minmax(15rem, 1fr);
+			gap: var(--space-8);
+		}
+	}
+</style>

@@ -1,0 +1,94 @@
+---
+interface Props {
+	title: string;
+	introduction: string;
+	href: string;
+	linkLabel: string;
+}
+
+const { title, introduction, href, linkLabel } = Astro.props;
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title" tabindex="-1">
+	<div class="container hero-inner">
+		<h1 id="hero-title">{title}</h1>
+		<div class="introduction">
+			<p>{introduction}</p>
+			<a href={href}>{linkLabel}</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		background: linear-gradient(115deg, var(--color-hero-start), var(--color-hero-end));
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.hero-inner {
+		display: grid;
+		gap: var(--space-7);
+		padding-block: clamp(3rem, 6vw, 6rem);
+	}
+
+	h1 {
+		max-width: 17ch;
+	}
+
+	.introduction {
+		max-width: var(--width-reading);
+	}
+
+	p {
+		font-size: var(--text-lead);
+		line-height: 1.7;
+	}
+
+	a {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 46px;
+		margin-top: var(--space-6);
+		padding: var(--space-2) var(--space-5);
+		overflow: hidden;
+		border: 1px solid var(--color-accent);
+		border-radius: var(--radius-small);
+		color: var(--color-text);
+		font-weight: 600;
+		text-decoration: none;
+		transition: color var(--transition-fast), border-color var(--transition-fast);
+		isolation: isolate;
+	}
+
+	a::before {
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		background: var(--color-accent);
+		content: '';
+		transform: translateY(100%);
+		transition: transform var(--transition-fast);
+	}
+
+	a:hover,
+	a:focus-visible {
+		color: var(--color-header);
+		border-color: var(--color-focus);
+	}
+
+	a:hover::before,
+	a:focus-visible::before {
+		transform: translateY(0);
+	}
+
+	@media (min-width: 64rem) {
+		.hero-inner {
+			grid-template-columns: 1.35fr 1fr;
+			align-items: center;
+			gap: var(--space-8);
+			min-height: 26rem;
+		}
+	}
+</style>

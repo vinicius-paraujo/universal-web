@@ -1,30 +1,50 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectShowcase from '../components/ProjectShowcase.astro';
+import PartnerList from '../components/PartnerList.astro';
+import { home } from '../content/home';
 ---
 
-<!doctype html>
-<html lang="pt-BR">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<meta
-			name="description"
-			content="Portal institucional do projeto de pesquisa Universal da Universidade Federal do Ceará."
-		/>
-		<title>Universal</title>
-	</head>
-	<body>
-		<main>
-			<img
-				class="brand"
-				src="/brand/universal-lockup-horizontal.svg"
-				alt="Universal"
-				width="960"
-				height="320"
-			/>
-			<p>Portal em desenvolvimento.</p>
-		</main>
-	</body>
-</html>
+<BaseLayout title={home.title} description={home.description} navigation={home.navigation}>
+	<Hero {...home.hero} href="#pesquisa" linkLabel="Conheça a pesquisa" />
+	<section class="research" id="pesquisa" aria-labelledby="research-title" tabindex="-1">
+		<div class="container research-inner">
+			<h2 id="research-title">{home.research.title}</h2>
+			<div class="research-copy">
+				{home.research.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+		</div>
+	</section>
+	<ProjectShowcase {...home.projects} />
+	<PartnerList {...home.partners} />
+</BaseLayout>
+
+<style>
+	.research {
+		background: var(--color-surface);
+	}
+
+	.research-inner {
+		display: grid;
+		gap: var(--space-6);
+		padding-block: var(--space-8);
+	}
+
+	h2 {
+		max-width: 24ch;
+	}
+
+	.research-copy {
+		display: grid;
+		gap: var(--space-4);
+		max-width: 36rem;
+	}
+
+	@media (min-width: 64rem) {
+		.research-inner {
+			grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1fr);
+			gap: var(--space-8);
+		}
+	}
+</style>

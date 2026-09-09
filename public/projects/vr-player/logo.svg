@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo Circular Opcional (Remova se preferir apenas o ícone) -->
+  <circle cx="256" cy="256" r="240" fill="#0a0c10" stroke="#161a22" stroke-width="4"/>
+
+  <!-- Estrutura Principal do Headset/Core -->
+  <path d="M140 180H372L420 256L372 332H140L92 256L140 180Z" stroke="#00f2ff" stroke-width="24" stroke-linejoin="round"/>
+
+  <!-- Lente/Núcleo Central -->
+  <path d="M256 190L310 256L256 322L202 256L256 190Z" fill="#00f2ff">
+  </path>
+
+  <!-- Linhas de Detalhe "Tech" -->
+  <path d="M110 256H170" stroke="#00f2ff" stroke-width="12" stroke-linecap="round"/>
+  <path d="M342 256H402" stroke="#00f2ff" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Brilho Interno Superior -->
+  <path d="M160 210L200 210" stroke="#00f2ff" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+</svg>

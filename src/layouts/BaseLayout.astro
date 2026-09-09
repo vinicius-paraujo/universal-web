@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { NavigationItem } from '../components/Navigation.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	navigation: NavigationItem[];
+}
+
+const { title, description, navigation } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#111218" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+		<Header navigation={navigation} />
+		<main id="conteudo" tabindex="-1"><slot /></main>
+		<Footer navigation={navigation} />
+	</body>
+</html>

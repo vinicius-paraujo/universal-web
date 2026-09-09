@@ -1,0 +1,103 @@
+---
+import Navigation, { type NavigationItem } from './Navigation.astro';
+
+interface Props {
+	navigation: NavigationItem[];
+}
+
+const { navigation } = Astro.props;
+---
+
+<header>
+	<div class="container header-inner">
+		<div class="brand-group">
+			<a class="universal" href="/" aria-label="Universal — início">
+				<img class="universal-symbol" src="/brand/universal-symbol.svg" alt="" width="320" height="320" />
+				<img class="universal-wordmark" src="/brand/universal-wordmark.svg" alt="Universal" width="600" height="180" />
+			</a>
+			<span class="brand-divider" aria-hidden="true"></span>
+			<a class="university" href="https://www.ufc.br/">
+				<img src="/brand/ufc-horizontal-white.png" alt="Universidade Federal do Ceará" width="995" height="268" />
+			</a>
+		</div>
+		<div class="navigation"><Navigation items={navigation} /></div>
+	</div>
+</header>
+
+<style>
+	header {
+		background: var(--color-header);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.header-inner {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		min-height: 7rem;
+		padding-block: var(--space-3);
+	}
+
+	.brand-group {
+		display: grid;
+		align-items: start;
+		gap: var(--space-2);
+	}
+
+	.universal {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		width: clamp(9rem, 42vw, 14rem);
+	}
+
+	.universal-symbol {
+		width: 30%;
+		flex: 0 0 auto;
+	}
+
+	.universal-wordmark {
+		width: 70%;
+		filter: grayscale(1) brightness(1.55);
+	}
+
+	.brand-divider {
+		display: none;
+		width: 1px;
+		height: 2.75rem;
+		background: var(--color-border);
+	}
+
+	.university {
+		display: block;
+		width: 7.25rem;
+		opacity: 0.8;
+	}
+
+	.navigation {
+		justify-self: end;
+	}
+
+	@media (min-width: 64rem) {
+		.header-inner {
+			min-height: 7.5rem;
+			gap: var(--space-8);
+		}
+
+		.brand-group {
+			display: flex;
+			align-items: center;
+			gap: var(--space-5);
+		}
+
+		.brand-divider {
+			display: block;
+		}
+
+		.university {
+			width: 9rem;
+		}
+	}
+</style>
