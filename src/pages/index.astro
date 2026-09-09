@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ProjectShowcase from '../components/ProjectShowcase.astro';
 import PartnerList from '../components/PartnerList.astro';
+import ResultGallery from '../components/ResultGallery.astro';
+import EventList from '../components/EventList.astro';
 import { home } from '../content/home';
 ---
 
@@ -18,6 +20,8 @@ import { home } from '../content/home';
 	</section>
 	<ProjectShowcase {...home.projects} />
 	<PartnerList {...home.partners} />
+	<ResultGallery {...home.results} />
+	<EventList {...home.events} />
 </BaseLayout>
 
 <style>

@@ -18,3 +18,16 @@ A versão branca destina-se à aplicação sobre fundos escuros.
 
 `public/partners/crab/logo.png` é a marca publicada no
 [site oficial do CRAb](https://crab.ufc.br/wp-content/uploads/2019/04/crab-1.png).
+
+## Demais parceiros
+
+- `public/partners/cnpq/logo.png`: versão RGB negativa disponibilizada na
+  [página oficial de uso da marca do CNPq](https://www.gov.br/cnpq/pt-br/canais_atendimento/identidade-visual/identidade-visual).
+- `public/partners/ufca/logo.png`: assinatura horizontal principal disponibilizada
+  pela [Diretoria de Comunicação da UFCA](https://www.ufca.edu.br/manuais-guias-e-tutoriais/).
+- `public/partners/grei/logo.png`: marca publicada no
+  [site oficial do GREI-UFC](https://grei-ufc.github.io/).
+- `public/partners/vortex/logo.png`: símbolo usado no
+  [site oficial do Vortex](https://vortex.unifor.br/).
+- `public/partners/unifor/logo.svg`: assinatura horizontal negativa publicada pela
+  Unifor. A arquitetura de marca da universidade abrange o NAMI.

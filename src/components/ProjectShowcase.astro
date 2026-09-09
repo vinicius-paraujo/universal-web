@@ -12,14 +12,6 @@ export interface ProjectSummary {
 	description?: string[];
 	logo?: string;
 	areas: string[];
-	video?: {
-		title: string;
-		youtubeId: string;
-	};
-	publications?: Array<{
-		citation: string;
-		href?: string;
-	}>;
 	resources?: ProjectResource[];
 }
 
@@ -61,29 +53,6 @@ const { title, introduction, items } = Astro.props;
 							</ul>
 						)}
 					</div>
-					{project.video && (
-						<div class="project-video">
-							<iframe
-								src={`https://www.youtube-nocookie.com/embed/${project.video.youtubeId}`}
-								title={project.video.title}
-								loading="lazy"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-								allowfullscreen
-							></iframe>
-						</div>
-					)}
-					{project.publications && project.publications.length > 0 && (
-						<section class="publications" aria-labelledby={`${project.id}-publications`}>
-							<h4 id={`${project.id}-publications`}>Artigos</h4>
-							<ol>
-								{project.publications.map((publication) => (
-									<li>
-										{publication.href ? <a href={publication.href}>{publication.citation}</a> : publication.citation}
-									</li>
-								))}
-							</ol>
-						</section>
-					)}
 				</article>
 			))}
 		</div>
@@ -203,52 +172,6 @@ const { title, introduction, items } = Astro.props;
 		border: 1px solid var(--color-accent);
 		border-radius: var(--radius-small);
 		text-decoration: none;
-	}
-
-	.project-video,
-	.publications {
-		grid-column: 1 / -1;
-	}
-
-	.project-video {
-		margin-top: var(--space-4);
-		aspect-ratio: 16 / 9;
-		overflow: hidden;
-		background: var(--color-header);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-small);
-	}
-
-	.project-video iframe {
-		display: block;
-		width: 100%;
-		height: 100%;
-		border: 0;
-	}
-
-	.publications {
-		display: grid;
-		gap: var(--space-4);
-		padding-top: var(--space-6);
-		border-top: 1px solid var(--color-border);
-	}
-
-	h4 {
-		margin: 0;
-		font-family: Georgia, 'Times New Roman', serif;
-		font-size: var(--text-heading);
-		font-weight: 400;
-	}
-
-	.publications ol {
-		margin: 0;
-		padding-left: 1.4rem;
-	}
-
-	.publications li {
-		max-width: 64rem;
-		padding-left: var(--space-2);
-		color: var(--color-muted);
 	}
 
 	@media (min-width: 64rem) {
