@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { title, description, navigation } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL('/readme/portal-inicio.png', Astro.site);
 ---
 
 <!doctype html>
@@ -19,8 +21,23 @@ const { title, description, navigation } = Astro.props;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
 		<meta name="theme-color" content="#111218" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Universal" />
+		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={socialImageURL} />
+		<meta property="og:image:alt" content="Portal Universal: realidade virtual para o ensino e a aprendizagem" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageURL} />
+		<link rel="canonical" href={canonicalURL} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
 		<title>{title}</title>
 	</head>
 	<body>
