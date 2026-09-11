@@ -1,17 +1,22 @@
 ---
 import Navigation, { type NavigationItem } from './Navigation.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { HomeContent } from '../content/home';
 
 interface Props {
 	navigation: NavigationItem[];
+	locale: 'pt-br' | 'en';
+	ui: HomeContent['ui'];
 }
 
-const { navigation } = Astro.props;
+const { navigation, locale, ui } = Astro.props;
+const homePath = locale === 'en' ? '/en/' : '/';
 ---
 
 <header>
 	<div class="container header-inner">
 		<div class="brand-group">
-			<a class="universal" href="/" aria-label="Universal — início">
+			<a class="universal" href={homePath} aria-label="Universal">
 				<img class="universal-symbol" src="/brand/universal-symbol.svg" alt="" width="320" height="320" />
 				<img class="universal-wordmark" src="/brand/universal-wordmark.svg" alt="Universal" width="600" height="180" />
 			</a>
@@ -20,7 +25,10 @@ const { navigation } = Astro.props;
 				<img src="/brand/ufc-horizontal-white.png" alt="Universidade Federal do Ceará" width="995" height="268" />
 			</a>
 		</div>
-		<div class="navigation"><Navigation items={navigation} /></div>
+		<div class="header-actions">
+			<div class="navigation"><Navigation items={navigation} label={ui.navigationLabel} menuLabel={ui.menuLabel} /></div>
+			<LanguageSwitcher currentLocale={locale} label={ui.languageLabel} currentLabel={ui.currentLanguage} />
+		</div>
 	</div>
 </header>
 
@@ -78,6 +86,13 @@ const { navigation } = Astro.props;
 
 	.navigation {
 		justify-self: end;
+	}
+
+	.header-actions { display: flex; min-width: 0; flex: 0 0 auto; align-items: center; gap: var(--space-3); }
+
+	@media (max-width: 39.99rem) {
+		.header-inner { display: grid; grid-template-columns: 1fr; gap: var(--space-3); padding-block: var(--space-4); }
+		.header-actions { width: 100%; justify-content: flex-end; }
 	}
 
 	@media (min-width: 64rem) {

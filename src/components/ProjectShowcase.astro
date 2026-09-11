@@ -19,9 +19,10 @@ interface Props {
 	title: string;
 	introduction: string;
 	items: ProjectSummary[];
+	labels: { projectList: string; areas: string; resources: string };
 }
 
-const { title, introduction, items } = Astro.props;
+const { title, introduction, items, labels } = Astro.props;
 ---
 
 <section class="projects" id="projetos" aria-labelledby="projects-title" tabindex="-1">
@@ -31,7 +32,7 @@ const { title, introduction, items } = Astro.props;
 			<p>{introduction}</p>
 		</header>
 
-		<div class="project-list" aria-label="Projetos do Universal">
+		<div class="project-list" aria-label={labels.projectList}>
 			{items.map((project, index) => (
 				<article class="project" id={project.id}>
 					<div class="project-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</div>
@@ -40,7 +41,7 @@ const { title, introduction, items } = Astro.props;
 							{project.logo && <img class="project-logo" src={project.logo} alt="" width="512" height="512" />}
 							<h3>{project.title}</h3>
 						</div>
-						<ul class="areas" aria-label="Áreas relacionadas">
+						<ul class="areas" aria-label={labels.areas}>
 							{project.areas.map((area) => <li>{area}</li>)}
 						</ul>
 					</div>
@@ -48,7 +49,7 @@ const { title, introduction, items } = Astro.props;
 						<p class="summary">{project.summary}</p>
 						{project.description?.map((paragraph) => <p>{paragraph}</p>)}
 						{project.resources && project.resources.length > 0 && (
-							<ul class="resources" aria-label={`Recursos de ${project.title}`}>
+							<ul class="resources" aria-label={`${labels.resources} ${project.title}`}>
 								{project.resources.map((resource) => <li><a href={resource.href}>{resource.label}</a></li>)}
 							</ul>
 						)}

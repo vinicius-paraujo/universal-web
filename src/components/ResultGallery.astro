@@ -13,9 +13,10 @@ interface Props {
 	title: string;
 	introduction: string;
 	items: ResultItem[];
+	linkLabel: string;
 }
 
-const { title, introduction, items } = Astro.props;
+const { title, introduction, items, linkLabel } = Astro.props;
 ---
 
 <section class="results" id="resultados" aria-labelledby="results-title" tabindex="-1">
@@ -48,7 +49,7 @@ const { title, introduction, items } = Astro.props;
 						<h3>{result.title}</h3>
 						<p>{result.description}</p>
 						{result.citation && <p class="citation">{result.citation}</p>}
-						{result.href && <a href={result.href}>Acessar resultado</a>}
+						{result.href && <a href={result.href}>{linkLabel}</a>}
 					</div>
 				</article>
 			))}

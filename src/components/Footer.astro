@@ -1,33 +1,38 @@
 ---
 import type { NavigationItem } from './Navigation.astro';
+import type { HomeContent } from '../content/home';
 
 interface Props {
 	navigation: NavigationItem[];
+	ui: HomeContent['ui'];
+	introduction: string;
+	locale: 'pt-br' | 'en';
 }
 
-const { navigation } = Astro.props;
+const { navigation, ui, introduction, locale } = Astro.props;
 const year = new Date().getFullYear();
+const homePath = locale === 'en' ? '/en/' : '/';
 ---
 
 <footer>
 	<div class="container footer-main">
 		<div class="footer-introduction">
-			<a class="footer-brand" href="/" aria-label="Universal — início">
+			<a class="footer-brand" href={homePath} aria-label="Universal">
 				<img src="/brand/universal-symbol.svg" alt="" width="320" height="320" />
 				<span>Universal</span>
 			</a>
-			<p>Pesquisa interdisciplinar em realidade virtual, computação gráfica e experiências de aprendizagem.</p>
+			<p>{introduction}</p>
 		</div>
 
-		<nav aria-label="Navegação do rodapé">
-			<h2>Portal</h2>
+		<nav aria-label={ui.footerNavigationLabel}>
+			<h2>{ui.portalLabel}</h2>
 			<ul>
 				{navigation.map(({ label, href }) => <li><a href={href}>{label}</a></li>)}
 			</ul>
 		</nav>
 
 		<div class="institutional">
-			<h2>Vínculo acadêmico</h2>
+			<h2>{ui.affiliationLabel}</h2>
 			<ul>
 				<li><a href="https://www.ufc.br/">Universidade Federal do Ceará</a></li>
 				<li><a href="https://virtual.ufc.br/">Instituto UFC Virtual</a></li>
@@ -38,7 +43,7 @@ const year = new Date().getFullYear();
 
 	<div class="container footer-bottom">
 		<p>© {year} Universal</p>
-		<p>Fortaleza, Ceará</p>
+		<p>{ui.location}</p>
 	</div>
 </footer>
 

@@ -1,0 +1,70 @@
+---
+interface Props {
+	currentLocale: 'pt-br' | 'en';
+	label: string;
+	currentLabel: string;
+}
+
+const { currentLocale, label, currentLabel } = Astro.props;
+const languages = [
+	{ locale: 'pt-br', lang: 'pt-BR', label: 'Português (Brasil)', href: '/' },
+	{ locale: 'en', lang: 'en', label: 'English', href: '/en/' },
+] as const;
+---
+
+<details class="language-switcher">
+	<summary aria-label={`${label}: ${currentLabel}`}>
+		<svg class="globe" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+			<circle cx="12" cy="12" r="8.5" />
+			<path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5M12 3.5C9.8 5.8 8.7 8.6 8.7 12s1.1 6.2 3.3 8.5" />
+		</svg>
+		<span>{currentLabel}</span>
+		<svg class="chevron" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="m3 5 4 4 4-4" /></svg>
+	</summary>
+	<ul aria-label={label}>
+		{languages.map((language) => (
+			<li>
+				<a href={language.href} lang={language.lang} hreflang={language.lang} aria-current={language.locale === currentLocale ? 'page' : undefined} data-locale={language.locale}>
+					{language.label}
+					{language.locale === currentLocale && <span class="current-mark" aria-hidden="true"></span>}
+				</a>
+			</li>
+		))}
+	</ul>
+</details>
+
+<script>
+	document.querySelectorAll<HTMLDetailsElement>('.language-switcher').forEach((switcher) => {
+		const summary = switcher.querySelector('summary');
+		switcher.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && switcher.open) {
+				switcher.open = false;
+				summary?.focus();
+			}
+		});
+		switcher.querySelectorAll<HTMLAnchorElement>('[data-locale]').forEach((link) => {
+			link.addEventListener('click', () => {
+				localStorage.setItem('universal-locale', link.dataset.locale ?? 'pt-br');
+				if (location.hash) link.href = `${link.href}${location.hash}`;
+			});
+		});
+		document.addEventListener('click', (event) => {
+			if (switcher.open && event.target instanceof Node && !switcher.contains(event.target)) switcher.open = false;
+		});
+	});
+</script>
+
+<style>
+	.language-switcher { position: relative; }
+	summary { display: flex; min-width: 7.25rem; min-height: 44px; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); color: var(--color-muted); list-style: none; cursor: pointer; border: 1px solid var(--color-border); border-radius: var(--radius-small); font-size: var(--text-small); font-weight: 600; white-space: nowrap; transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast); }
+	summary::-webkit-details-marker { display: none; }
+	summary:hover, details[open] summary { color: var(--color-text); border-color: var(--color-accent); background: var(--color-surface); }
+	.globe { color: var(--color-accent); fill: none; stroke: currentColor; stroke-width: 1.5; }
+	.chevron { fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform var(--transition-fast); }
+	details[open] .chevron { transform: rotate(180deg); }
+	ul { position: absolute; z-index: 4; top: calc(100% + var(--space-2)); right: 0; width: max-content; min-width: 12rem; margin: 0; padding: var(--space-2); list-style: none; background: var(--color-header); border: 1px solid var(--color-border); border-radius: var(--radius-small); box-shadow: var(--shadow-menu); }
+	a { display: flex; min-height: 42px; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-2) var(--space-3); color: var(--color-muted); border-radius: var(--radius-small); text-decoration: none; }
+	a:hover, a:focus-visible, a[aria-current='page'] { color: var(--color-text); background: var(--color-surface); }
+	.current-mark { width: 0.4rem; height: 0.4rem; background: var(--color-accent); border-radius: 50%; }
+	@media (prefers-reduced-motion: reduce) { .chevron { transition: none; } }
+</style>

@@ -6,18 +6,20 @@ export interface NavigationItem {
 
 interface Props {
 	items: NavigationItem[];
+	label: string;
+	menuLabel: string;
 }
 
-const { items } = Astro.props;
+const { items, label, menuLabel } = Astro.props;
 ---
 
-<nav aria-label="Principal">
+<nav aria-label={label}>
 	<ul class="wide-navigation">
 		{items.map(({ label, href }) => <li><a href={href}>{label}</a></li>)}
 	</ul>
 	<details class="compact-navigation">
 		<summary>
-			Menu
+			{menuLabel}
 			<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
 				<path d="M3 6h12M3 12h12" fill="none" stroke="currentColor" stroke-width="1.5" />
 			</svg>
@@ -127,7 +129,7 @@ const { items } = Astro.props;
 		box-shadow: var(--shadow-menu);
 	}
 
-	@media (min-width: 75rem) {
+	@media (min-width: 88rem) {
 		.wide-navigation {
 			display: flex;
 		}

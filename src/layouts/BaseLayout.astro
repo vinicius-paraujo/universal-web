@@ -3,20 +3,29 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type { NavigationItem } from '../components/Navigation.astro';
+import type { HomeContent } from '../content/home';
 
 interface Props {
 	title: string;
 	description: string;
 	navigation: NavigationItem[];
+	locale: 'pt-br' | 'en';
+	htmlLang: string;
+	ogLocale: string;
+	socialImageAlt: string;
+	ui: HomeContent['ui'];
+	footer: { introduction: string };
 }
 
-const { title, description, navigation } = Astro.props;
+const { title, description, navigation, locale, htmlLang, ogLocale, socialImageAlt, ui, footer } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL('/readme/portal-inicio.png', Astro.site);
+const alternatePt = new URL('/', Astro.site);
+const alternateEn = new URL('/en/', Astro.site);
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={htmlLang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,25 +34,37 @@ const socialImageURL = new URL('/readme/portal-inicio.png', Astro.site);
 		<meta name="theme-color" content="#111218" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Universal" />
-		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:locale" content={ogLocale} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content={socialImageURL} />
-		<meta property="og:image:alt" content="Portal Universal: realidade virtual para o ensino e a aprendizagem" />
+		<meta property="og:image:alt" content={socialImageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={socialImageURL} />
 		<link rel="canonical" href={canonicalURL} />
+		<link rel="alternate" hreflang="pt-BR" href={alternatePt} />
+		<link rel="alternate" hreflang="en" href={alternateEn} />
+		<link rel="alternate" hreflang="x-default" href={alternatePt} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
 		<title>{title}</title>
 	</head>
 	<body>
-		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-		<Header navigation={navigation} />
+		<a class="skip-link" href="#conteudo">{ui.skipLink}</a>
+		<Header navigation={navigation} locale={locale} ui={ui} />
 		<main id="conteudo" tabindex="-1"><slot /></main>
-		<Footer navigation={navigation} />
+		<Footer navigation={navigation} ui={ui} introduction={footer.introduction} locale={locale} />
+		{locale === 'pt-br' && (
+			<script is:inline>
+				(() => {
+					const saved = localStorage.getItem('universal-locale');
+					const preferred = navigator.languages?.[0] || navigator.language;
+					if (saved === 'en' || (!saved && preferred?.toLowerCase().startsWith('en'))) location.replace(`/en/${location.hash}`);
+				})();
+			</script>
+		)}
 	</body>
 </html>

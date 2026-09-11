@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from './Hero.astro';
+import ProjectShowcase from './ProjectShowcase.astro';
+import PartnerList from './PartnerList.astro';
+import ResultGallery from './ResultGallery.astro';
+import EventList from './EventList.astro';
+import type { HomeContent } from '../content/home';
+
+interface Props { home: HomeContent }
+const { home } = Astro.props;
+---
+
+<BaseLayout {...home}>
+	<Hero {...home.hero} href="#pesquisa" />
+	<section class="research" id="pesquisa" aria-labelledby="research-title" tabindex="-1">
+		<div class="container research-inner">
+			<h2 id="research-title">{home.research.title}</h2>
+			<div class="research-copy">{home.research.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div>
+		</div>
+	</section>
+	<ProjectShowcase {...home.projects} labels={{ projectList: home.ui.projectListLabel, areas: home.ui.areasLabel, resources: home.ui.resourcesLabel }} />
+	<PartnerList {...home.partners} />
+	<ResultGallery {...home.results} linkLabel={home.ui.resultLinkLabel} />
+	<EventList {...home.events} labels={{ date: home.ui.dateLabel, location: home.ui.locationLabel, participation: home.ui.participationLabel, website: home.ui.eventSiteLabel, websiteAriaPrefix: home.ui.eventSiteAriaPrefix }} />
+</BaseLayout>
+
+<style>
+	.research { background: var(--color-surface); }
+	.research-inner { display: grid; gap: var(--space-6); padding-block: var(--space-8); }
+	h2 { max-width: 24ch; }
+	.research-copy { display: grid; gap: var(--space-4); max-width: 36rem; }
+	@media (min-width: 64rem) { .research-inner { grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1fr); gap: var(--space-8); } }
+</style>

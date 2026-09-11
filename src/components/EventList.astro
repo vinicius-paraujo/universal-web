@@ -13,9 +13,10 @@ interface Props {
 	title: string;
 	introduction: string;
 	items: EventItem[];
+	labels: { date: string; location: string; participation: string; website: string; websiteAriaPrefix: string };
 }
 
-const { title, introduction, items } = Astro.props;
+const { title, introduction, items, labels } = Astro.props;
 ---
 
 <section class="events" id="eventos" aria-labelledby="events-title" tabindex="-1">
@@ -33,13 +34,13 @@ const { title, introduction, items } = Astro.props;
 						<h3>{event.name}</h3>
 					</div>
 					<dl class="event-facts">
-						<div><dt>Data</dt><dd>{event.date}</dd></div>
-						<div><dt>Local</dt><dd>{event.location}</dd></div>
+						<div><dt>{labels.date}</dt><dd>{event.date}</dd></div>
+						<div><dt>{labels.location}</dt><dd>{event.location}</dd></div>
 					</dl>
 					<div class="event-footer">
-						<p><span>Participação do Universal</span>{event.participation}</p>
-						<a href={event.href} aria-label={`Site oficial do ${event.shortName}`}>
-							Site do evento
+						<p><span>{labels.participation}</span>{event.participation}</p>
+						<a href={event.href} aria-label={`${labels.websiteAriaPrefix} ${event.shortName}`}>
+							{labels.website}
 							<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
 								<path d="M4 14 14 4M7 4h7v7" fill="none" stroke="currentColor" stroke-width="1.5" />
 							</svg>
