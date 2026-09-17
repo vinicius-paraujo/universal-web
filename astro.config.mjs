@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://universal.markineo.com.br',
+	site: process.env.SITE_URL ?? 'https://universal.markineo.com.br',
 	output: 'static',
 	integrations: [sitemap()],
 	i18n: {
