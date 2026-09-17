@@ -70,5 +70,3 @@ estático.
 ## Licença
 
 O código-fonte está disponível sob a [licença Apache 2.0](./LICENSE).
-Marcas, logotipos e materiais de terceiros não são licenciados automaticamente
-com o código.
