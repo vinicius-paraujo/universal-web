@@ -1,6 +1,6 @@
 # Implantação com Docker
 
-O portal Universal é gerado estaticamente pelo Astro. A imagem utiliza Node.js somente durante a construção e entrega os arquivos resultantes por meio do Nginx.
+O portal Universal é gerado estaticamente pelo Astro. A imagem utiliza Node.js durante a construção e entrega os arquivos resultantes por meio do Nginx.
 
 ## Arquitetura da imagem
 
@@ -61,7 +61,7 @@ curl --fail --head http://localhost:8080/en/
 
 O valor de `SITE_URL` é aplicado durante a construção aos endereços canônicos, metadados de compartilhamento e sitemap. Como esses arquivos são estáticos, alterar a URL pública exige construir uma nova imagem.
 
-A configuração atual pressupõe que o portal será publicado na raiz de um domínio ou subdomínio, como `https://universal.ufc.br/`. A publicação em um subdiretório, como `https://www.ufc.br/universal/`, exige configurar previamente o caminho-base da aplicação e revisar os caminhos absolutos dos recursos.
+A configuração atual pressupõe que o portal será publicado na raiz de um domínio ou subdomínio, como `https://universal.ufc.br/`.
 
 ## Atualização da imagem
 
